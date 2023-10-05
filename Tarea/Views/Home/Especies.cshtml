@@ -1,0 +1,38 @@
+﻿@model Tarea.Model.ViewModels.EspeciesViewModel
+@{
+    Layout = "Layout";
+}
+
+
+
+
+    <h1>
+        <img src="~/clases/@(Model.Nombre).png" />@(Model.Id)
+    </h1>
+  
+    
+        
+
+        <div class="listaEspecies2">
+    @foreach (var p in Model.Especies)
+            
+            {
+            
+            <a href="~/Home/Especies/@p.Especie.Replace(" ","")">
+                <img src="~/Especies/@(p.Id).jpg" /> 
+                @*<label>@p.Especie</label>*@
+            </a>
+            }
+        </div>
+    
+    
+
+        <script>
+
+            var c = document.querySelector("main h1 img").cloneNode();
+            document.querySelector("main h1").appendChild(c);
+        </script>
+
+   
+   
+
