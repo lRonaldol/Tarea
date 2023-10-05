@@ -35,19 +35,19 @@ namespace Tarea.Controllers
                   }).FirstOrDefault();
 
 
-            //if (Especies == null)
-            //{
+            if (Especies == null)
+            {
 
-            //    return RedirectToAction("Index");
-            //}
+                return RedirectToAction("Index");
+            }
 
             return View(Especies);
         }
 
         public IActionResult Especie(string id)
         {
-            AnimalesContext context = new ();
-            var Especie = context.Especies.Where(x => x.Especie == id.Replace(" ", ""))
+            AnimalesContext context = new();
+            var Especie = context.Especies.Where(x => x.Especie.Replace(" ","") == id)
                 .OrderBy(x => x.Especie).Include(x => x.IdClaseNavigation).Select(x => new EspecieViewModel
                 {
                     Id = x.Id,
@@ -61,7 +61,7 @@ namespace Tarea.Controllers
 
                 }).First();
 
-            if (Especie != null)
+            if (Especie == null)
             {
                 return RedirectToAction("Index");
             }
